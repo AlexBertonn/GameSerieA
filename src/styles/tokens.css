@@ -1,0 +1,24 @@
+:root {
+  --tinta: #21183c;
+  --anil: #312a6e;
+  --anil-claro: #4b44a0;
+  --goiaba: #f0566a;
+  --manga: #ffb93b;
+  --gramado: #38a853;
+  --giz: #fff3d1;
+  --giz-suave: #c9c0e6;
+
+  --fonte-titulo: "Press Start 2P", "Courier New", monospace;
+  --fonte-texto: "VT323", "Courier New", monospace;
+
+  --px: 3px;
+  --borda-pixel:
+    0 calc(var(--px) * -1) 0 var(--tinta),
+    0 var(--px) 0 var(--tinta),
+    calc(var(--px) * -1) 0 0 var(--tinta),
+    var(--px) 0 0 var(--tinta),
+    inset 0 0 0 var(--px) var(--giz),
+    inset 0 0 0 calc(var(--px) * 2) var(--anil-claro);
+  --respiro: clamp(6px, 1.2vw, 14px);
+  color-scheme: dark;
+}

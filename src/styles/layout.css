@@ -1,0 +1,96 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { margin: 0; min-height: 100%; }
+
+body {
+  background: var(--tinta);
+  color: var(--giz);
+  font-family: var(--fonte-texto);
+  font-size: 20px;
+  line-height: 1.1;
+  -webkit-font-smoothing: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, p { margin: 0; }
+canvas { display: block; image-rendering: pixelated; }
+[hidden] { display: none !important; }
+
+:focus-visible { outline: 3px solid var(--manga); outline-offset: 3px; }
+
+#app { min-height: 100dvh; }
+
+/* Seleção */
+.tela-selecao {
+  width: min(100%, 1240px);
+  margin-inline: auto;
+  padding: max(var(--respiro), env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) 24px max(12px, env(safe-area-inset-left));
+}
+
+.capa { padding: clamp(18px, 4vh, 40px) 0 clamp(16px, 3vh, 28px); text-align: center; }
+
+.lista-times {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(136px, 40vw), 1fr));
+  gap: clamp(8px, 1.3vw, 14px);
+}
+
+/* Batalha */
+.tela-batalha {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr);
+  height: 100dvh;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+.arena { position: relative; min-height: 0; overflow: hidden; container-type: size; }
+
+.comandos {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 340px) minmax(190px, 260px);
+  gap: var(--respiro);
+  padding: var(--respiro);
+  background: var(--anil);
+  border-top: var(--px) solid var(--tinta);
+}
+
+/* Celular em pé e telas estreitas */
+@media (max-width: 820px) {
+  .comandos {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    grid-template-areas: "registro registro" "dado acoes";
+  }
+  .registro { grid-area: registro; }
+  .painel-dado { grid-area: dado; }
+  .acoes { grid-area: acoes; }
+}
+
+/* Celular deitado e janelas baixas */
+@media (max-height: 520px) and (min-width: 560px) {
+  .tela-batalha {
+    grid-template-columns: minmax(0, 1fr) clamp(220px, 34vw, 310px);
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+  .placar { grid-column: 1 / -1; }
+  .comandos {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) auto auto;
+    grid-template-areas: "registro" "dado" "acoes";
+    min-height: 0;
+    border-top: 0;
+    border-left: var(--px) solid var(--tinta);
+  }
+  .registro { grid-area: registro; }
+  .painel-dado { grid-area: dado; }
+  .acoes { grid-area: acoes; }
+}
+
+/* Classificação */
+.tela-tabela {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
+  place-items: center;
+  height: 100dvh;
+  padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+}

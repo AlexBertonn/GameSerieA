@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#21183c">
+  <meta name="description" content="Batalha de mascotes por turnos em pixel art. Escolha seu time, role o dado e dispute o campeonato.">
+  <title>Série A Battle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap">
+  <link rel="stylesheet" href="src/styles/tokens.css">
+  <link rel="stylesheet" href="src/styles/layout.css">
+  <link rel="stylesheet" href="src/styles/components.css">
+  <link rel="stylesheet" href="src/styles/janelas.css">
+  <link rel="stylesheet" href="src/styles/animations.css">
+</head>
+<body>
+  <main id="app">
+
+    <!-- TeamSelect: usa a lista "participantes" do jogo.js -->
+    <section id="tela-selecao" class="tela tela-selecao" aria-labelledby="titulo-jogo">
+      <header class="capa">
+        <h1 id="titulo-jogo" class="logo">Série A <span>Battle</span></h1>
+        <p class="capa-texto">Escolha seu mascote. Role o dado. Enfrente os outros 19 times.</p>
+      </header>
+      <div id="lista-times" class="lista-times"></div>
+    </section>
+
+    <!-- BattleScreen: organiza todos os componentes da partida -->
+    <section id="tela-batalha" class="tela tela-batalha" aria-label="Batalha" hidden>
+      <header class="placar">
+        <span class="placar-marca">Série A <b>Battle</b></span>
+        <span id="placar-estadio" class="placar-estadio"></span>
+        <span id="placar-partida" class="placar-dado"></span>
+        <span id="placar-rodada" class="placar-dado"></span>
+      </header>
+
+      <!-- BattleScene: cenário, personagens e status -->
+      <div id="arena" class="arena">
+        <canvas id="cenario-fundo" class="cenario" aria-hidden="true"></canvas>
+        <div id="lutador-jogador" class="lutador lutador-jogador"><canvas width="32" height="32" role="img"></canvas></div>
+        <div id="lutador-adversario" class="lutador lutador-adversario"><canvas width="32" height="32" role="img"></canvas></div>
+        <canvas id="cenario-frente" class="cenario cenario-frente" aria-hidden="true"></canvas>
+        <div id="status-jogador" class="status status-jogador"></div>
+        <div id="status-adversario" class="status status-adversario"></div>
+        <div id="faixa" class="faixa" role="status" hidden></div>
+      </div>
+
+      <div class="comandos">
+        <!-- BattleLog: mensagens do combate -->
+        <div id="registro" class="registro" role="log" aria-live="polite" aria-label="Acontecimentos da batalha" tabindex="0"></div>
+        <!-- DiceRoller: dado de 1 a 10 e faixa de dano -->
+        <div id="dado" class="painel-dado"></div>
+        <!-- ActionPanel: comando do jogador -->
+        <div id="acoes" class="acoes"></div>
+      </div>
+    </section>
+
+    <!-- StandingsTable: resultado de tabelaFinal() -->
+    <section id="tela-tabela" class="tela tela-tabela" aria-labelledby="titulo-tabela" hidden>
+      <div id="tabela" class="tabela-caixa"></div>
+    </section>
+
+  </main>
+
+  <!-- TeamInfo: janela do botão "i" na escolha de time -->
+  <dialog id="info-time" class="janela janela-info" aria-labelledby="info-nome"></dialog>
+
+  <!-- RoundSummary: tabela e próximo desafiante ao fim de cada partida -->
+  <dialog id="resumo-rodada" class="janela janela-rodada" aria-labelledby="rodada-titulo"></dialog>
+
+  <!-- Lógica do jogo -->
+  <script src="jogo.js"></script>
+
+  <!-- Dados visuais: trocar ou adicionar mascotes e cenários aqui -->
+  <script src="src/sprites/pixel.js"></script>
+  <script src="src/data/mascotes.js"></script>
+  <script src="src/data/cenarios.js"></script>
+
+  <!-- Componentes -->
+  <script src="src/components/BattleScene.js"></script>
+  <script src="src/components/Character.js"></script>
+  <script src="src/components/StatusPanel.js"></script>
+  <script src="src/components/BattleLog.js"></script>
+  <script src="src/components/DiceRoller.js"></script>
+  <script src="src/components/ActionPanel.js"></script>
+  <script src="src/components/TeamSelect.js"></script>
+  <script src="src/components/TeamInfo.js"></script>
+  <script src="src/components/RoundSummary.js"></script>
+  <script src="src/components/StandingsTable.js"></script>
+  <script src="src/components/BattleScreen.js"></script>
+  <script src="src/app.js"></script>
+</body>
+</html>
